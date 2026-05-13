@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flayme Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+.order-success{
+  min-height:80vh;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:40px;
+}
+
+.success-icon{
+  font-size:6rem;
+
+  margin-bottom:20px;
+
+  animation:pop 0.5s ease;
+}
+
+.order-success h1{
+  font-family:'Syne',sans-serif;
+
+  font-size:3rem;
+
+  margin-bottom:14px;
+}
+
+.order-success p{
+  color:#b0b0b0;
+
+  font-size:1.05rem;
+
+  line-height:1.7;
+
+  max-width:400px;
+}
+
+.eta-box{
+  margin-top:24px;
+
+  background:#1c1c1c;
+
+  padding:20px 30px;
+
+  border-radius:18px;
+
+  font-size:1.15rem;
+
+  font-weight:700;
+}
+
+.back-home-btn{
+  margin-top:30px;
+
+  border:none;
+
+  background:var(--flame);
+
+  color:white;
+
+  padding:16px 28px;
+
+  border-radius:14px;
+
+  font-size:1rem;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.back-home-btn:hover{
+  background:var(--flame-l);
+
+  transform:translateY(-2px);
+}
+
+@keyframes pop{
+
+  from{
+    transform:scale(0);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --flame:#ff5a1f;
+  --flame-l:#ff7a4d;
+  --bg:#0f0f0f;
+  --card:#1c1c1c;
+  --text:#ffffff;
+  --muted:#9f9f9f;
+  --green:#35d07f;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.topnav{
+  position:sticky;
+  top:0;
+  z-index:999;
+
+  height:92px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 40px;
+
+  background:rgba(10,10,10,0.95);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.logo{
+  font-family:'Syne',sans-serif;
+  font-size:2rem;
+  font-weight:800;
+  color:var(--flame);
+}
+
+.logo span{
+  color:white;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.nav-link{
+  cursor:pointer;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.nav-link:hover{
+  color:var(--flame);
+}
+
+.nav-link.active{
+  color:var(--flame);
+}
+
+.cart-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.cart-count{
+  background:var(--flame);
+
+  min-width:22px;
+  height:22px;
+
+  padding:0 6px;
+
+  border-radius:999px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:0.75rem;
+  font-weight:700;
+}
+
+.checkout-btn{
+  background:var(--flame);
+
+  padding:12px 18px;
+
+  border-radius:12px;
+}
+
+.checkout-btn:hover{
+  background:var(--flame-l);
+  color:white;
+}
+
+/* PAGES */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* HERO */
+
+.hero{
+  min-height:500px;
+
+  background:
+  linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),
+  url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&auto=format&fit=crop&q=80');
+
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  align-items:center;
+}
+
+.hero-content{
+  padding:70px 40px;
+}
+
+.hero h1{
+  font-family:'Syne',sans-serif;
+
+  font-size:clamp(3rem,7vw,5.4rem);
+
+  line-height:0.95;
+
+  max-width:700px;
+}
+
+.hero h1 span{
+  color:var(--flame);
+}
+
+.hero p{
+  margin-top:22px;
+
+  color:#d3d3d3;
+
+  font-size:1.05rem;
+
+  line-height:1.7;
+
+  max-width:520px;
+}
+
+/* CHIPS */
+
+.chips-row{
+  display:flex;
+  gap:14px;
+
+  overflow-x:auto;
+
+  padding:30px 40px;
+
+  scrollbar-width:none;
+}
+
+.chips-row::-webkit-scrollbar{
+  display:none;
+}
+
+.chip{
+  flex-shrink:0;
+
+  background:#1d1d1d;
+
+  padding:12px 22px;
+
+  border-radius:999px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.chip:hover{
+  background:var(--flame);
+}
+
+/* SECTION */
+
+.sec-head{
+  padding:10px 40px 25px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.sec-head h2{
+  font-family:'Syne',sans-serif;
+  font-size:1.7rem;
+}
+
+.sec-head a{
+  color:var(--flame);
+  cursor:pointer;
+}
+
+/* CARDS */
+
+.rest-grid,
+.specials-grid{
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+
+  gap:28px;
+
+  padding:0 40px 60px;
+}
+
+.rest-card,
+.spec-card{
+  background:var(--card);
+
+  border-radius:24px;
+
+  overflow:hidden;
+
+  transition:0.3s;
+
+  cursor:pointer;
+}
+
+.rest-card:hover,
+.spec-card:hover{
+  transform:translateY(-7px);
+}
+
+.rest-card img,
+.spec-card img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+}
+
+.rest-body,
+.spec-body{
+  padding:22px;
+}
+
+.rest-name,
+.spec-name{
+  font-family:'Syne',sans-serif;
+  font-size:1.3rem;
+  font-weight:700;
+}
+
+.rest-meta,
+.spec-desc{
+  margin-top:10px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.badge{
+  margin-top:16px;
+
+  display:inline-block;
+
+  background:rgba(255,90,31,0.15);
+
+  color:var(--flame);
+
+  padding:8px 14px;
+
+  border-radius:10px;
+
+  font-size:0.8rem;
+  font-weight:700;
+}
+
+.add-btn{
+  margin-top:18px;
+
+  width:100%;
+
+  border:none;
+
+  background:var(--flame);
+
+  color:white;
+
+  padding:14px;
+
+  border-radius:14px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.add-btn:hover{
+  background:var(--flame-l);
+}
+
+.add-btn.added{
+  background:var(--green);
+  color:black;
+}
+
+/* CART */
+
+.cart-page{
+  padding:40px;
+}
+
+.cart-page h1,
+.checkout-page h1{
+  font-family:'Syne',sans-serif;
+  font-size:2rem;
+  margin-bottom:25px;
+}
+
+.cart-item{
+  background:var(--card);
+
+  padding:18px;
+
+  border-radius:18px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:18px;
+}
+
+.cart-item button{
+  border:none;
+
+  background:var(--flame);
+
+  color:white;
+
+  padding:10px 14px;
+
+  border-radius:10px;
+
+  cursor:pointer;
+}
+
+.total-box{
+  margin-top:25px;
+
+  background:var(--card);
+
+  padding:25px;
+
+  border-radius:18px;
+}
+
+.total-box h2{
+  margin-bottom:18px;
+}
+
+.checkout-go{
+  width:100%;
+
+  border:none;
+
+  background:var(--flame);
+
+  color:white;
+
+  padding:16px;
+
+  border-radius:14px;
+
+  font-size:1rem;
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+/* CHECKOUT */
+
+.checkout-page{
+  padding:40px;
+}
+
+.checkout-form{
+  max-width:600px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:18px;
+}
+
+.checkout-form input{
+  background:#1d1d1d;
+
+  border:none;
+
+  color:white;
+
+  padding:16px;
+
+  border-radius:14px;
+
+  font-size:1rem;
+}
+
+.place-order{
+  border:none;
+
+  background:var(--flame);
+
+  color:white;
+
+  padding:18px;
+
+  border-radius:14px;
+
+  font-size:1rem;
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .topnav{
+    padding:0 20px;
+    flex-direction:column;
+    height:auto;
+    gap:14px;
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero-content{
+    padding:60px 20px;
+  }
+
+  .chips-row,
+  .sec-head,
+  .rest-grid,
+  .specials-grid,
+  .cart-page,
+  .checkout-page{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<nav class="topnav">
+
+  <div class="logo">
+    <img src="C:\Users\nisha\Music\attachment_117132760-removebg-preview.png">
+    Flayme<span>.</span>
+  </div>
+
+  <div class="nav-links">
+
+    <div class="nav-link active"
+      id="nav-home"
+      onclick="goPage('home')">
+      Home
+    </div>
+
+    <div class="nav-link"
+      id="nav-specials"
+      onclick="goPage('specials')">
+      Specials
+    </div>
+
+    <div class="nav-link cart-link"
+      id="nav-cart"
+      onclick="goPage('cart')">
+
+      Cart
+
+      <span class="cart-count"
+        id="navBadge">
+        0
+      </span>
+
+    </div>
+
+    <div class="nav-link checkout-btn"
+      id="nav-checkout"
+      onclick="goPage('checkout')">
+      Checkout
+    </div>
+
+  </div>
+
+</nav>
+
+
+
+<div class="page active"
+  id="page-home">
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h1>
+      Food that hits
+      <span>different.</span>
+    </h1>
+
+    <p>
+      Premium restaurants delivered hot & fast.
+      Late-night cravings solved instantly.
+    </p>
+
+  </div>
+
+</section>
+
+<div class="sec-head">
+  <h2>Trending Restaurants</h2>
+</div>
+
+<div class="rest-grid">
+
+  <div class="rest-card">
+
+    <img src="https://www.shutterstock.com/image-photo/delicate-photography-indian-chicken-biriyani-600nw-2681696323.jpg">
+
+    <div class="rest-body">
+
+      <div class="rest-name">
+        arafa 
+      </div>
+
+      <div class="rest-meta">
+        ★ 4.8 • 25 mins <br>
+        indian • Wood Fired
+      </div>
+
+
+      <button class="add-btn"
+        onclick="addItem('Pizza Planet',299,this)">
+        Add ₹299
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="rest-card">
+
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&auto=format&fit=crop&q=80">
+
+    <div class="rest-body">
+
+      <div class="rest-name">
+        Burger Barn
+      </div>
+
+      <div class="rest-meta">
+        ★ 4.6 • 18 mins <br>
+        American • Smash Burgers
+      </div>
+
+
+      <button class="add-btn"
+        onclick="addItem('Burger Barn',249,this)">
+        Add ₹249
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- SPECIALS -->
+
+<div class="page"
+  id="page-specials">
+
+<div class="sec-head"
+  style="padding-top:40px">
+
+  <h2>
+    Today's Specials
+  </h2>
+
+</div>
+
+<div class="specials-grid">
+
+  <div class="spec-card">
+
+    <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=900&auto=format&fit=crop&q=80">
+
+    <div class="spec-body">
+
+      <div class="spec-name">
+        Chicken Biryani
+      </div>
+
+      <div class="spec-desc">
+        40% OFF today only
+      </div>
+
+      <button class="add-btn"
+        onclick="addItem('Chicken Biryani',199,this)">
+        Add ₹199
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="spec-card">
+
+    <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=900&auto=format&fit=crop&q=80">
+
+    <div class="spec-body">
+
+      <div class="spec-name">
+        Sushi Combo
+      </div>
+
+      <div class="spec-desc">
+        Premium chef combo
+      </div>
+
+      <button class="add-btn"
+        onclick="addItem('Sushi Combo',349,this)">
+        Add ₹349
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- CART -->
+
+<div class="page"
+  id="page-cart">
+
+<div class="cart-page">
+
+<h1>
+  Your Cart
+</h1>
+
+<div id="cartItems"></div>
+
+<div class="total-box">
+
+  <h2>
+    Total:
+    ₹<span id="cartTotal">0</span>
+  </h2>
+
+  <button class="checkout-go"
+    onclick="goPage('checkout')">
+
+    Proceed To Checkout
+
+  </button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="page"
+  id="page-checkout">
+
+<div class="checkout-page">
+
+<h1>
+  Checkout
+</h1>
+
+<div class="checkout-form">
+
+  <input type="text"
+    placeholder="Full Name">
+
+  <input type="text"
+    placeholder="Phone Number">
+
+  <input type="text"
+    placeholder="Delivery Address">
+
+  <button class="place-order"
+    onclick="placeOrder()">
+
+    Place Order
+
+  </button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="page"
+  id="page-order-success">
+
+  <div class="order-success">
+
+    <div class="success-icon">
+      
+    </div>
+
+    <h1>
+      Order Confirmed
+    </h1>
+
+    <p>
+      Your food is now being prepared by the restaurant.
+    </p>
+
+    <div class="eta-box">
+
+      Arriving in
+      <strong>24 mins</strong>
+
+    </div>
+
+    <button class="back-home-btn"
+      onclick="goPage('home')">
+
+      Back To Home
+
+    </button>
+
+  </div>
+
+</div>
+<script>
+
+
+function goPage(name){
+
+  document.querySelectorAll('.page')
+    .forEach(p=>p.classList.remove('active'));
+
+  document.querySelectorAll('.nav-link')
+    .forEach(n=>n.classList.remove('active'));
+
+  document.getElementById('page-'+name)
+    .classList.add('active');
+
+  document.getElementById('nav-'+name)
+    .classList.add('active');
+
+}
+
+
+
+const cart=[];
+
+function addItem(name,price,btn){
+
+  cart.push({name,price});
+
+  updateCart();
+
+  btn.innerText='✓ Added';
+  btn.classList.add('added');
+
+}
+
+function updateCart(){
+
+  const cartItems=
+    document.getElementById('cartItems');
+
+  const navBadge=
+    document.getElementById('navBadge');
+
+  const total=
+    document.getElementById('cartTotal');
+
+  cartItems.innerHTML='';
+
+  let totalPrice=0;
+
+  cart.forEach((item,index)=>{
+
+    totalPrice+=item.price;
+
+    cartItems.innerHTML+=`
+
+      <div class="cart-item">
+
+        <div>
+          <h3>${item.name}</h3>
+          <p>₹${item.price}</p>
+        </div>
+
+        <button onclick="removeItem(${index})">
+          Remove
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+  navBadge.innerText=cart.length;
+
+  total.innerText=totalPrice;
+
+}
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+
+}
+
+function placeOrder(){
+
+
+  document.querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
+
+  document.getElementById('page-order-success')
+    .classList.add('active');
+}
+
+</script>
+
+</body>
+</html>
